@@ -128,11 +128,11 @@ $('#filters').innerHTML = categories.map((c, i) =>
 
 $('#projectGrid').innerHTML = PROJECTS.map((p) => `
   <article class="project reveal" data-cat="${esc(p.category)}">
-    <div class="project__banner" style="background:${p.gradient}">
-      <span class="project__tag">${esc(p.category)}</span>
-      <span aria-hidden="true">${p.icon}</span>
-    </div>
     <div class="project__body">
+      <div class="project__top">
+        <span class="app-icon" style="background:${p.gradient}" aria-hidden="true">${p.icon}</span>
+        <span class="project__tag">${esc(p.category)}</span>
+      </div>
       <h3>${esc(p.name)}</h3>
       <p>${esc(p.desc)}</p>
       <div class="chips">${p.tech.map((t) => `<span class="chip">${esc(t)}</span>`).join('')}</div>
@@ -165,7 +165,7 @@ $('#filters').addEventListener('click', (e) => {
     if (!repos.length) { list.innerHTML = ''; return; }
     list.innerHTML = repos.map((r) => `
       <a class="repo" href="${esc(r.html_url)}" target="_blank" rel="noopener">
-        <span class="repo__name">${esc(r.name)}</span>
+        <span class="repo__name">${esc(r.name)}<svg class="chev" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 6 6 6-6 6"/></svg></span>
         ${r.description ? `<span class="muted" style="font-size:.85rem">${esc(r.description)}</span>` : ''}
         <span class="repo__meta">
           ${r.language ? `<span><i class="lang-dot" style="background:${LANG_COLORS[r.language] || '#8b949e'}"></i>${esc(r.language)}</span>` : ''}
