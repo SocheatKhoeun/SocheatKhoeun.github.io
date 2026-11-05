@@ -16,7 +16,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="assets/css/style.css?v=202611051127" />
+  <link rel="stylesheet" href="assets/css/style.css?v=202611051129" />
   <script>
     try { const t = localStorage.getItem('theme'); if (t) document.documentElement.dataset.theme = t; } catch (e) {}
     document.documentElement.classList.add('js');
@@ -38,6 +38,7 @@
           <a href="#about">About</a>
           <a href="#skills">Skills</a>
           <a href="#projects">Projects</a>
+          <a href="#services">Services</a>
           <a href="#contact">Contact</a>
         </nav>
       </div>
@@ -217,15 +218,25 @@
           <div class="segmented reveal" role="tablist" aria-label="Filter projects" id="filters"></div>
         </div>
         <div class="project-grid" id="projectGrid"></div>
+      </div>
+    </section>
 
-        <div class="more reveal">
-          <div class="more__head">
-            <h3>More on GitHub</h3>
-            <a class="link-arrow" href="https://github.com/SocheatKhoeun?tab=repositories" target="_blank" rel="noopener">See all
-              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-            </a>
+    <!-- SERVICES -->
+    <section class="section section--tint" id="services">
+      <div class="container">
+        <div class="section__row">
+          <div>
+            <p class="kicker reveal">Services</p>
+            <h2 class="blur-text" data-split>What I can build for you.</h2>
           </div>
-          <div class="repo-list" id="repoList"><p class="muted pad">Loading repositories…</p></div>
+          <p class="sub reveal">From a single API to a complete product, delivered clean, tested and ready to ship.</p>
+        </div>
+        <div class="services reveal" id="servicesGrid"></div>
+        <div class="services__cta reveal">
+          <p>Have a project in mind?</p>
+          <a class="btn btn--dark" href="https://www.upwork.com/freelancers/~011cb493d21d517d34" target="_blank" rel="noopener">Hire me on Upwork
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
         </div>
       </div>
     </section>
@@ -265,6 +276,6 @@
     </div>
   </footer>
 
-  <script src="assets/js/main.js?v=202611051127" defer></script>
+  <script src="assets/js/main.js?v=202611051129" defer></script>
 </body>
 </html>

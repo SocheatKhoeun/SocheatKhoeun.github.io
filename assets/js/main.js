@@ -73,10 +73,21 @@ const PROJECTS = [
   },
 ];
 
-const LANG_COLORS = {
-  JavaScript: '#f1e05a', TypeScript: '#3178c6', Python: '#3572A5', Vue: '#41b883',
-  HTML: '#e34c26', CSS: '#563d7c', PHP: '#4F5D95', 'C++': '#f34b7d',
-};
+
+const SERVICES = [
+  { title: 'API & Backend Development', desc: 'Secure, well-documented REST APIs with authentication, roles and clean architecture.',
+    stack: 'NestJS · Node.js · Laravel · FastAPI' },
+  { title: 'Web Apps & Back Offices', desc: 'Admin dashboards and back-office tools your team can actually use to run the business.',
+    stack: 'Vue · Nuxt · React · TypeScript' },
+  { title: 'Microservices & Real-time', desc: 'Independent services for chat, streaming and payments, with live updates over WebSockets.',
+    stack: 'Microservices · WebSocket · Streams' },
+  { title: 'Database Design', desc: 'Data models, migrations and query tuning that keep your app fast as it grows.',
+    stack: 'PostgreSQL · MySQL · MongoDB · Prisma · Drizzle' },
+  { title: 'DevOps & Deployment', desc: 'Containerized builds and automated pipelines, so every release ships reliably.',
+    stack: 'Docker · CI/CD · GitHub Actions · Linux' },
+  { title: 'AI Integration', desc: 'AI features served through production APIs, from face recognition to language processing.',
+    stack: 'Python · Computer Vision · NLP' },
+];
 
 // Lines typed into the showcase terminal: ['cmd', text] is typed, ['out', html] appears.
 const TERMINAL = [
@@ -123,6 +134,15 @@ $('#projectGrid').innerHTML = PROJECTS.map((p) => `
     <h3>${esc(p.name)}</h3>
     <p>${esc(p.desc)}</p>
     <p class="project__tech">${p.tech.map(esc).join('<span aria-hidden="true">·</span>')}</p>
+  </article>`).join('');
+
+// ---------- Render services ----------
+$('#servicesGrid').innerHTML = SERVICES.map((sv, i) => `
+  <article class="service">
+    <span class="service__num">${String(i + 1).padStart(2, '0')}</span>
+    <h3>${esc(sv.title)}</h3>
+    <p>${esc(sv.desc)}</p>
+    <p class="service__stack">${esc(sv.stack)}</p>
   </article>`).join('');
 
 $('#filters').addEventListener('click', (e) => {
@@ -284,31 +304,6 @@ new IntersectionObserver((entries, obs) => {
   }, { threshold: 0.3 }).observe(box);
 })();
 
-// ---------- Live repos from GitHub ----------
-(async function loadRepos() {
-  const list = $('#repoList');
-  const featured = new Set(PROJECTS.flatMap((p) => p.repos.map((r) => r.url.split('/').pop().toLowerCase())));
-  try {
-    const res = await fetch(`https://api.github.com/users/${GITHUB_USER}/repos?per_page=100&sort=pushed`);
-    if (!res.ok) throw new Error(res.status);
-    const repos = (await res.json())
-      .filter((r) => !r.fork && r.language !== 'Dart' && !/flutter|blablacar/i.test(r.name) && !featured.has(r.name.toLowerCase()) && r.name.toLowerCase() !== `${GITHUB_USER}.github.io`.toLowerCase())
-      .slice(0, 6);
-    if (!repos.length) { list.parentElement.hidden = true; return; }
-    list.innerHTML = repos.map((r) => `
-      <a class="repo" href="${esc(r.html_url)}" target="_blank" rel="noopener">
-        <span class="repo__name">${esc(r.name)}<svg class="chev" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-        ${r.description ? `<span class="muted">${esc(r.description)}</span>` : ''}
-        <span class="repo__meta">
-          ${r.language ? `<span><i class="lang-dot" style="background:${LANG_COLORS[r.language] || '#8b949e'}"></i>${esc(r.language)}</span>` : ''}
-          <span>Updated ${new Date(r.pushed_at).toLocaleDateString(undefined, { month: 'short', year: 'numeric' })}</span>
-        </span>
-      </a>`).join('');
-  } catch {
-    list.innerHTML = `<p class="muted pad">Couldn't load repositories right now. Browse them on <a href="https://github.com/${GITHUB_USER}" target="_blank" rel="noopener"><strong>GitHub</strong></a>.</p>`;
-  }
-})();
-
 (async function loadStats() {
   try {
     const res = await fetch(`https://api.github.com/users/${GITHUB_USER}`);
@@ -346,7 +341,7 @@ const sectionObs = new IntersectionObserver((entries) => {
     if (en.isIntersecting) navAnchors.forEach((a) => a.classList.toggle('active', a.getAttribute('href') === `#${en.target.id}`));
   });
 }, { rootMargin: '-45% 0px -50% 0px' });
-['about', 'skills', 'projects', 'contact'].forEach((id) => sectionObs.observe(document.getElementById(id)));
+['about', 'skills', 'projects', 'services', 'contact'].forEach((id) => sectionObs.observe(document.getElementById(id)));
 
 $('#year').textContent = new Date().getFullYear();
 
