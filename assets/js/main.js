@@ -37,10 +37,10 @@ const PROJECTS = [
     repos: [],
   },
   {
-    name: 'Face Recognition Service',
+    name: 'ML Face Recognition Service',
     category: 'AI',
-    desc: 'Backend service that detects and identifies faces in images, exposed through a REST API so other applications can integrate it easily.',
-    tech: ['Computer Vision', 'API'],
+    desc: 'Machine learning service that detects and identifies faces in images, exposed through a REST API so other applications can integrate it easily.',
+    tech: ['Machine Learning', 'Computer Vision', 'REST API'],
     repos: [],
   },
   {
