@@ -254,15 +254,6 @@ strong { font-weight: 600; color: var(--label); }
   font-size: 1rem; font-weight: 500; color: var(--label);
 }
 
-/* ---------- Segmented filter ---------- */
-.segmented { display: inline-flex; flex-wrap: wrap; gap: 4px; padding: 4px; border-radius: 14px; background: var(--surface); flex: none; }
-.filter {
-  border: 0; background: transparent; font: inherit; font-size: .9rem; font-weight: 500; color: var(--label-2);
-  padding: 8px 16px; border-radius: 10px; cursor: pointer; transition: background-color .25s, color .25s, box-shadow .25s;
-}
-.filter:hover { color: var(--label); }
-.filter[aria-selected="true"] { background: var(--card); color: var(--label); box-shadow: 0 1px 3px rgba(0,0,0,.08), 0 0 0 1px var(--border); }
-
 /* ---------- Projects: 2-col grid ---------- */
 .project-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
 .project {
@@ -270,7 +261,6 @@ strong { font-weight: 600; color: var(--label); }
   transition: transform .5s var(--ease), background-color .3s;
 }
 .project:hover { transform: translateY(-3px); background: var(--surface-2); }
-.project.hidden { display: none; }
 .project__cat { font-size: .85rem; font-weight: 500; color: var(--label-2); }
 .project h3 { font-size: 1.6rem; letter-spacing: -0.035em; margin-top: 10px; }
 .project p { color: var(--label-2); margin-top: 10px; line-height: 1.6; flex: 1; }

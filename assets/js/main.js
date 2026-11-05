@@ -123,11 +123,7 @@ $('#skillsGrid').innerHTML = SKILLS.map((s) => `
     <ul class="skill-row__items">${s.items.map((t) => `<li>${esc(t)}</li>`).join('')}</ul>
   </div>`).join('');
 
-// ---------- Render projects + filters ----------
-const categories = ['All', ...new Set(PROJECTS.map((p) => p.category))];
-$('#filters').innerHTML = categories.map((c, i) =>
-  `<button class="filter" role="tab" aria-selected="${i === 0}" data-cat="${esc(c)}">${esc(c)}</button>`).join('');
-
+// ---------- Render projects ----------
 $('#projectGrid').innerHTML = PROJECTS.map((p) => `
   <article class="project reveal" data-cat="${esc(p.category)}">
     <span class="project__cat">${esc(p.category)}</span>
@@ -144,18 +140,6 @@ $('#servicesGrid').innerHTML = SERVICES.map((sv, i) => `
     <p>${esc(sv.desc)}</p>
     <p class="service__stack">${esc(sv.stack)}</p>
   </article>`).join('');
-
-$('#filters').addEventListener('click', (e) => {
-  const btn = e.target.closest('.filter');
-  if (!btn) return;
-  $$('.filter').forEach((b) => b.setAttribute('aria-selected', b === btn));
-  const cat = btn.dataset.cat;
-  $$('.project').forEach((el) => {
-    const show = cat === 'All' || el.dataset.cat === cat;
-    el.classList.toggle('hidden', !show);
-    if (show) { el.classList.remove('in'); requestAnimationFrame(() => requestAnimationFrame(() => el.classList.add('in'))); }
-  });
-});
 
 // ---------- Split text into words for blur-in ----------
 function splitWords(el) {
