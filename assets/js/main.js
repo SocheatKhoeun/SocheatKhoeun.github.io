@@ -156,10 +156,10 @@ const io = new IntersectionObserver((entries) => {
     en.target.classList.add('in');
     io.unobserve(en.target);
   });
-}, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+}, { threshold: 0, rootMargin: '0px 0px -8% 0px' });
 $$('[data-split], .reveal').forEach((el) => io.observe(el));
 // hero animates on load
-requestAnimationFrame(() => $$('.hero .fade-up, .hero [data-split]').forEach((el) => el.classList.add('in')));
+requestAnimationFrame(() => requestAnimationFrame(() => $$('.hero .fade-up, .hero [data-split]').forEach((el) => el.classList.add('in'))));
 
 // ---------- Terminal typing ----------
 (function terminal() {
@@ -334,3 +334,5 @@ const sectionObs = new IntersectionObserver((entries) => {
 ['about', 'skills', 'projects', 'contact'].forEach((id) => sectionObs.observe(document.getElementById(id)));
 
 $('#year').textContent = new Date().getFullYear();
+
+window.__siteReady = true;
