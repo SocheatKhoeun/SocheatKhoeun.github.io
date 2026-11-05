@@ -227,26 +227,6 @@ requestAnimationFrame(() => requestAnimationFrame(() => $$('.hero .fade-up, .her
   }, { threshold: 0.35 }).observe($('.showcase'));
 })();
 
-// ---------- Count-up stats ----------
-function countUp(el) {
-  const target = +el.dataset.count;
-  const suffix = el.dataset.suffix || '';
-  if (REDUCED || !target) { el.textContent = target + suffix; return; }
-  const t0 = performance.now();
-  const dur = 1400;
-  const tick = (t) => {
-    const p = Math.min(1, (t - t0) / dur);
-    el.textContent = Math.round(target * (1 - Math.pow(1 - p, 4))) + suffix;
-    if (p < 1) requestAnimationFrame(tick);
-  };
-  requestAnimationFrame(tick);
-}
-new IntersectionObserver((entries, obs) => {
-  if (!entries[0].isIntersecting) return;
-  obs.disconnect();
-  $$('.stat strong[data-count]').forEach(countUp);
-}, { threshold: 0.4 }).observe($('.stats'));
-
 // ---------- Scroll-linked statement ----------
 (function statement() {
   const lines = $$('#statement .line');
@@ -286,15 +266,6 @@ new IntersectionObserver((entries, obs) => {
   new IntersectionObserver((entries, obs) => {
     if (entries[0].isIntersecting) { obs.disconnect(); setTimeout(play, 400); }
   }, { threshold: 0.3 }).observe(box);
-})();
-
-(async function loadStats() {
-  try {
-    const res = await fetch(`https://api.github.com/users/${GITHUB_USER}`);
-    if (!res.ok) return;
-    const u = await res.json();
-    if (u.public_repos) { const el = $('#statRepos'); el.dataset.count = u.public_repos; el.textContent = u.public_repos; }
-  } catch {}
 })();
 
 // ---------- Theme toggle ----------

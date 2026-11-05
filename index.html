@@ -16,7 +16,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="assets/css/style.css?v=202611051142" />
+  <link rel="stylesheet" href="assets/css/style.css?v=202611051143" />
   <script>
     try { const t = localStorage.getItem('theme'); if (t) document.documentElement.dataset.theme = t; } catch (e) {}
     document.documentElement.classList.add('js');
@@ -120,19 +120,6 @@
               <span class="terminal__status"><span id="termStatus">Ready</span><i class="spinner" aria-hidden="true"></i></span>
             </div>
           </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- STATS -->
-    <section class="trust">
-      <div class="container">
-        <p class="trust__label reveal">Active on GitHub since 2024, with a public track record of real projects.</p>
-        <div class="stats reveal">
-          <div class="stat"><strong id="statRepos" data-count="29">29</strong><span>Public repositories</span></div>
-          <div class="stat"><strong data-count="5">5</strong><span>Areas of expertise</span></div>
-          <div class="stat"><strong data-count="8">8</strong><span>Featured projects</span></div>
-          <div class="stat"><strong data-count="8" data-suffix="+">8+</strong><span>Languages &amp; frameworks</span></div>
         </div>
       </div>
     </section>
@@ -250,6 +237,41 @@
       </div>
     </section>
 
+    <!-- PROCESS -->
+    <section class="section" id="process">
+      <div class="container">
+        <div class="section__row">
+          <div>
+            <p class="kicker reveal">Process</p>
+            <h2 class="blur-text" data-split>How I work.</h2>
+          </div>
+          <p class="sub reveal">A clear, transparent process from first call to launch.</p>
+        </div>
+        <ol class="process" id="processList">
+          <li class="step reveal" style="--d: 0ms">
+            <span class="step__num">01</span>
+            <h3>Discover</h3>
+            <p>We talk through your goals, users and requirements, so I understand exactly what success looks like for you.</p>
+          </li>
+          <li class="step reveal" style="--d: 120ms">
+            <span class="step__num">02</span>
+            <h3>Plan</h3>
+            <p>I propose the architecture, scope and milestones, with a clear timeline before any code is written.</p>
+          </li>
+          <li class="step reveal" style="--d: 240ms">
+            <span class="step__num">03</span>
+            <h3>Build</h3>
+            <p>I develop in small, reviewable iterations and share regular progress updates along the way.</p>
+          </li>
+          <li class="step reveal" style="--d: 360ms">
+            <span class="step__num">04</span>
+            <h3>Launch</h3>
+            <p>I deploy to production, hand over documentation and help with fixes and improvements after launch.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
     <!-- CONTACT -->
     <section class="contact" id="contact">
       <div class="container contact__inner">
@@ -285,6 +307,6 @@
     </div>
   </footer>
 
-  <script src="assets/js/main.js?v=202611051142" defer></script>
+  <script src="assets/js/main.js?v=202611051143" defer></script>
 </body>
 </html>
