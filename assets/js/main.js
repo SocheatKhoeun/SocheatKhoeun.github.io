@@ -2,14 +2,16 @@
 const GITHUB_USER = 'SocheatKhoeun';
 
 const SKILLS = [
-  { icon: '🎨', title: 'Frontend', desc: 'Responsive, accessible interfaces and SPAs.',
-    items: ['Vue 3', 'Nuxt', 'React', 'Angular', 'TypeScript', 'JavaScript', 'Tailwind CSS', 'HTML/CSS'] },
-  { icon: '⚙️', title: 'Backend', desc: 'REST APIs, auth, real-time and microservices.',
-    items: ['Node.js', 'NestJS', 'Express', 'Laravel', 'PHP', 'Python', 'Socket.IO', 'JWT'] },
-  { icon: '📱', title: 'Mobile', desc: 'Cross-platform apps with clean state management.',
-    items: ['Flutter', 'Dart', 'Firebase', 'Provider', 'PWA'] },
-  { icon: '🗄️', title: 'Data & DevOps', desc: 'Databases, containers and tooling.',
-    items: ['MongoDB', 'MySQL', 'PostgreSQL', 'Docker', 'Git', 'Inertia.js'] },
+  { icon: '⚙️', title: 'Backend', desc: 'Scalable APIs, real-time systems and microservices.',
+    items: ['Node.js', 'NestJS', 'Express', 'Python', 'FastAPI', 'Laravel', 'PHP', 'REST APIs', 'WebSocket', 'Microservices', 'JWT Auth'] },
+  { icon: '🎨', title: 'Frontend', desc: 'Fast, responsive interfaces for web and mobile.',
+    items: ['Vue 3', 'Nuxt', 'React', 'Angular', 'TypeScript', 'JavaScript', 'Tailwind CSS', 'Flutter', 'Dart'] },
+  { icon: '🗄️', title: 'Database Management', desc: 'Data modeling, migrations and performance.',
+    items: ['PostgreSQL', 'MySQL', 'MongoDB', 'Firebase', 'Schema Design', 'Migrations', 'Query Optimization'] },
+  { icon: '🚀', title: 'DevOps', desc: 'Containerized builds, automation and deployment.',
+    items: ['Docker', 'Docker Compose', 'CI/CD', 'GitHub Actions', 'Linux', 'Git'] },
+  { icon: '🧠', title: 'AI / ML', desc: 'Applied machine learning served through production APIs.',
+    items: ['Python', 'Computer Vision', 'Face Recognition', 'NLP', 'Khmer NLP', 'Model Serving'] },
 ];
 
 const PROJECTS = [
