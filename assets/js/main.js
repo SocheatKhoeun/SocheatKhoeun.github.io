@@ -30,10 +30,10 @@ const PROJECTS = [
     repos: [],
   },
   {
-    name: 'EV Web',
+    name: 'Coffee POS System',
     category: 'Full-Stack',
-    desc: 'Web platform for electric vehicles, built end to end: the API and data model behind it and the responsive web interface people use.',
-    tech: ['REST API', 'Web App'],
+    desc: 'Point-of-sale system for coffee shops: taking orders, managing the menu and stock, handling payments and tracking daily sales, with role-based access for staff.',
+    tech: ['REST API', 'Web App', 'POS'],
     repos: [],
   },
   {
