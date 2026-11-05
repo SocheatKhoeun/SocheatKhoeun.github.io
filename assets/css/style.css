@@ -304,8 +304,9 @@ strong { font-weight: 600; color: var(--label); }
 
 /* ---------- Footer ---------- */
 .footer { border-top: 1px solid var(--border); padding: 26px 0; font-size: .85rem; color: var(--label-2); }
-.footer__inner { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+.footer__inner { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
 .footer a:hover { color: var(--label); }
+.footer__links { display: flex; flex-wrap: wrap; gap: 20px; }
 
 /* ---------- Reduced motion ---------- */
 @media (prefers-reduced-motion: reduce) {
