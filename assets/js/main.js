@@ -13,7 +13,6 @@ const SKILLS = [
 ];
 
 const PROJECTS = [
-  // role / scope are optional; defaults: 'Full-Stack Developer' and 'Frontend · Backend · Database · Deployment'
   {
     name: 'SabayFlix',
     category: 'Web',
@@ -89,11 +88,6 @@ $('#projectGrid').innerHTML = PROJECTS.map((p) => `
       <h3>${esc(p.name)}</h3>
       <p>${esc(p.desc)}</p>
       <div class="chips">${p.tech.map((t) => `<span class="chip">${esc(t)}</span>`).join('')}</div>
-      <div class="project__role">
-        <span class="project__role-label">Role</span>
-        <span>${esc(p.role || 'Full-Stack Developer')}</span>
-      </div>
-      <p class="project__scope">${esc(p.scope || 'Frontend · Backend · Database · Deployment')}</p>
     </div>
   </article>`).join('');
 
