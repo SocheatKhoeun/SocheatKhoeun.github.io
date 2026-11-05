@@ -30,6 +30,13 @@ const PROJECTS = [
     repos: [],
   },
   {
+    name: 'EV Web',
+    category: 'Full-Stack',
+    desc: 'Web platform for electric vehicles, built end to end: the API and data model behind it and the responsive web interface people use.',
+    tech: ['REST API', 'Web App'],
+    repos: [],
+  },
+  {
     name: 'Face Recognition Service',
     category: 'AI',
     desc: 'Backend service that detects and recognizes faces in images, exposed through an API for other applications to use.',
@@ -37,7 +44,14 @@ const PROJECTS = [
     repos: [],
   },
   {
-    name: 'Chat Service',
+    name: 'AI-Power-Study',
+    category: 'AI',
+    desc: 'AI-powered study platform that helps learners study smarter, using AI to turn learning material into guided, interactive study sessions.',
+    tech: ['AI', 'Web App', 'API'],
+    repos: [],
+  },
+  {
+    name: 'chat-microservice',
     category: 'Backend',
     desc: 'Real-time chat built as an independent microservice. It owns its own API and messaging logic and delivers instant two-way messages over WebSockets.',
     tech: ['Microservices', 'Node.js', 'WebSocket'],
