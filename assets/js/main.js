@@ -2,31 +2,31 @@
 const GITHUB_USER = 'SocheatKhoeun';
 
 const SKILLS = [
-  { icon: '⚙️', title: 'Backend', desc: 'Scalable APIs, real-time systems and microservices.',
+  { title: 'Backend', desc: 'Scalable APIs, real-time systems and microservices.',
     items: ['Node.js', 'NestJS', 'Express', 'Python', 'FastAPI', 'Laravel', 'PHP', 'REST APIs', 'WebSocket', 'Microservices', 'JWT Auth'] },
-  { icon: '🎨', title: 'Frontend', desc: 'Fast, responsive interfaces for web and mobile.',
+  { title: 'Frontend', desc: 'Fast, responsive interfaces for web and mobile.',
     items: ['Vue 3', 'Nuxt', 'React', 'Angular', 'TypeScript', 'JavaScript', 'Tailwind CSS', 'Flutter', 'Dart'] },
-  { icon: '🗄️', title: 'Database Management', desc: 'Data modeling, migrations and performance.',
+  { title: 'Database Management', desc: 'Data modeling, migrations and performance.',
     items: ['PostgreSQL', 'MySQL', 'MongoDB', 'Firebase', 'Schema Design', 'Migrations', 'Query Optimization'] },
-  { icon: '🚀', title: 'DevOps', desc: 'Containerized builds, automation and deployment.',
+  { title: 'DevOps', desc: 'Containerized builds, automation and deployment.',
     items: ['Docker', 'Docker Compose', 'CI/CD', 'GitHub Actions', 'Linux', 'Git'] },
-  { icon: '🧠', title: 'AI / ML', desc: 'Applied machine learning served through production APIs.',
+  { title: 'AI / ML', desc: 'Applied machine learning served through production APIs.',
     items: ['Python', 'Computer Vision', 'Face Recognition', 'NLP', 'Khmer NLP', 'Model Serving'] },
 ];
 
 const PROJECTS = [
   {
     name: 'SabayFlix',
-    category: 'Web',
-    desc: 'Online movie and series streaming platform: browsing a content catalog, playing titles and managing the viewer experience.',
-    tech: ['Streaming', 'Web App'],
+    category: 'Full-Stack',
+    desc: 'Movie and series streaming platform. I built the backend API that powers the apps and the web back office the team uses to manage titles, content and users.',
+    tech: ['REST API', 'Back Office', 'Streaming'],
     repos: [],
   },
   {
     name: 'MoiTV Media',
-    category: 'Web',
-    desc: 'Digital media and TV platform for delivering video content and channels to viewers on the web.',
-    tech: ['Media', 'Web App'],
+    category: 'Full-Stack',
+    desc: 'Digital TV and media platform. I built the API that serves channels and video content, and the web back office used to manage programs, media and users.',
+    tech: ['REST API', 'Back Office', 'Media'],
     repos: [],
   },
   {
@@ -72,7 +72,6 @@ const ARROW = '<svg viewBox="0 0 24 24" width="14" height="14" fill="none" strok
 // ---------- Render skills ----------
 $('#skillsGrid').innerHTML = SKILLS.map((s) => `
   <article class="skill-card reveal">
-    <div class="skill-card__icon">${s.icon}</div>
     <h3>${esc(s.title)}</h3>
     <p class="muted">${esc(s.desc)}</p>
     <div class="chips">${s.items.map((i) => `<span class="chip">${esc(i)}</span>`).join('')}</div>
