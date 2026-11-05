@@ -86,33 +86,28 @@ const $$ = (s, r = document) => [...r.querySelectorAll(s)];
 const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 const REDUCED = matchMedia('(prefers-reduced-motion: reduce)').matches;
-const pad2 = (n) => String(n).padStart(2, '0');
 
 // ---------- Render skills ----------
-$('#skillsGrid').innerHTML = SKILLS.map((s, i) => `
-  <article class="skill-card reveal">
-    <div class="skill-card__top">
+$('#skillsGrid').innerHTML = SKILLS.map((s) => `
+  <div class="skill-row">
+    <div class="skill-row__head">
       <h3>${esc(s.title)}</h3>
-      <span class="skill-card__num">${pad2(i + 1)}</span>
+      <p>${esc(s.desc)}</p>
     </div>
-    <p>${esc(s.desc)}</p>
-    <div class="chips">${s.items.map((t) => `<span class="chip">${esc(t)}</span>`).join('')}</div>
-  </article>`).join('');
+    <ul class="skill-row__items">${s.items.map((t) => `<li>${esc(t)}</li>`).join('')}</ul>
+  </div>`).join('');
 
 // ---------- Render projects + filters ----------
 const categories = ['All', ...new Set(PROJECTS.map((p) => p.category))];
 $('#filters').innerHTML = categories.map((c, i) =>
   `<button class="filter" role="tab" aria-selected="${i === 0}" data-cat="${esc(c)}">${esc(c)}</button>`).join('');
 
-$('#projectGrid').innerHTML = PROJECTS.map((p, i) => `
+$('#projectGrid').innerHTML = PROJECTS.map((p) => `
   <article class="project reveal" data-cat="${esc(p.category)}">
-    <div class="project__top">
-      <span class="project__tag">${esc(p.category)}</span>
-      <span class="project__num">${pad2(i + 1)}</span>
-    </div>
+    <span class="project__cat">${esc(p.category)}</span>
     <h3>${esc(p.name)}</h3>
     <p>${esc(p.desc)}</p>
-    <div class="chips">${p.tech.map((t) => `<span class="chip">${esc(t)}</span>`).join('')}</div>
+    <p class="project__tech">${p.tech.map(esc).join('<span aria-hidden="true">·</span>')}</p>
   </article>`).join('');
 
 $('#filters').addEventListener('click', (e) => {

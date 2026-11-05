@@ -186,40 +186,39 @@
 
     <!-- SKILLS -->
     <section class="section" id="skills">
-      <div class="container split">
-        <div class="split__aside">
-          <div class="split__sticky">
+      <div class="container">
+        <div class="section__row">
+          <div>
             <p class="kicker reveal">Skills</p>
             <h2 class="blur-text" data-split>Expertise across the stack.</h2>
-            <p class="sub reveal">Five areas I work in every day, from the database to deployment.</p>
           </div>
+          <p class="sub reveal">Five areas I work in every day, from the database to deployment.</p>
         </div>
-        <div class="split__main" id="skillsGrid"></div>
+        <div class="skill-list reveal" id="skillsGrid"></div>
       </div>
     </section>
 
     <!-- PROJECTS -->
     <section class="section" id="projects">
-      <div class="container split">
-        <div class="split__aside">
-          <div class="split__sticky">
+      <div class="container">
+        <div class="section__row">
+          <div>
             <p class="kicker reveal">Projects</p>
             <h2 class="blur-text" data-split>Selected work.</h2>
-            <p class="sub reveal">Products I built end to end as the full-stack developer, from streaming platforms to AI services.</p>
-            <div class="segmented reveal" role="tablist" aria-label="Filter projects" id="filters"></div>
           </div>
+          <div class="segmented reveal" role="tablist" aria-label="Filter projects" id="filters"></div>
         </div>
-        <div class="split__main" id="projectGrid"></div>
-      </div>
+        <div class="project-grid" id="projectGrid"></div>
 
-      <div class="container more reveal">
-        <div class="more__head">
-          <h3>More on GitHub</h3>
-          <a class="link-arrow" href="https://github.com/SocheatKhoeun?tab=repositories" target="_blank" rel="noopener">See all
-            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-          </a>
+        <div class="more reveal">
+          <div class="more__head">
+            <h3>More on GitHub</h3>
+            <a class="link-arrow" href="https://github.com/SocheatKhoeun?tab=repositories" target="_blank" rel="noopener">See all
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </a>
+          </div>
+          <div class="repo-list" id="repoList"><p class="muted pad">Loading repositories…</p></div>
         </div>
-        <div class="repo-list" id="repoList"><p class="muted pad">Loading repositories…</p></div>
       </div>
     </section>
 
