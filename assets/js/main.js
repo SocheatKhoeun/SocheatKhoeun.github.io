@@ -13,92 +13,48 @@ const SKILLS = [
 ];
 
 const PROJECTS = [
+  // repos: [] = private project (shows a "Private project" label instead of links)
   {
-    name: 'UAMS — University Management Platform',
-    category: 'Full-Stack',
-    icon: '🎓',
-    gradient: 'linear-gradient(135deg,#2563eb,#7c3aed)',
-    desc: 'Capstone project: a university management platform with a typed Nuxt/Vue frontend (services, stores, middleware) and a containerised Python backend with Alembic migrations and tests.',
-    tech: ['Nuxt', 'Vue', 'TypeScript', 'Python', 'Docker'],
-    repos: [
-      { label: 'Frontend', url: 'https://github.com/SocheatKhoeun/Capstone2-UAMS-Frontend' },
-      { label: 'Backend', url: 'https://github.com/SocheatKhoeun/Capstone2-UAMS-Backend' },
-    ],
+    name: 'SabayFlix',
+    category: 'Web',
+    desc: 'Online movie and series streaming platform: browsing a content catalog, playing titles and managing the viewer experience.',
+    tech: ['Streaming', 'Web App'],
+    repos: [],
   },
   {
-    name: 'Inventory Management System',
-    category: 'Full-Stack',
-    icon: '📦',
-    gradient: 'linear-gradient(135deg,#0ea5e9,#22c55e)',
-    desc: 'MERN app for products, orders and sales with real-time stock sync over Socket.IO, low-stock alerts, KPI dashboards and JWT auth with admin/staff roles.',
-    tech: ['MongoDB', 'Express', 'React', 'Node.js', 'Socket.IO'],
-    repos: [{ label: 'Source', url: 'https://github.com/SocheatKhoeun/Inventory-Management-System' }],
+    name: 'MoiTV Media',
+    category: 'Web',
+    desc: 'Digital media and TV platform for delivering video content and channels to viewers on the web.',
+    tech: ['Media', 'Web App'],
+    repos: [],
   },
   {
-    name: 'HanyBay POS System',
-    category: 'Full-Stack',
-    icon: '🧾',
-    gradient: 'linear-gradient(135deg,#f97316,#ef4444)',
-    desc: 'Point-of-sale system built on Laravel with JWT authentication, permission-based roles, and seeded catalogs for sizes, categories and countries.',
-    tech: ['Laravel', 'PHP', 'JavaScript', 'JWT'],
-    repos: [{ label: 'Source', url: 'https://github.com/SocheatKhoeun/HanyBay-POS-System' }],
+    name: 'Face Recognition Service',
+    category: 'AI',
+    desc: 'Backend service that detects and recognizes faces in images, exposed through an API for other applications to use.',
+    tech: ['Computer Vision', 'API'],
+    repos: [],
   },
   {
-    name: 'Payment Microservice',
+    name: 'Chat Service',
     category: 'Backend',
-    icon: '💳',
-    gradient: 'linear-gradient(135deg,#e11d48,#7c3aed)',
-    desc: 'A standalone payment service built with NestJS and TypeScript, designed to plug into a larger microservice architecture.',
-    tech: ['NestJS', 'TypeScript', 'Microservices'],
-    repos: [{ label: 'Source', url: 'https://github.com/SocheatKhoeun/payment-microservice' }],
+    desc: 'Real-time chat with separate frontend and backend, delivering instant two-way messaging over WebSockets.',
+    tech: ['Node.js', 'WebSocket', 'JavaScript'],
+    repos: [{ label: 'Source', url: 'https://github.com/SocheatKhoeun/WebSocket-Chat' }],
   },
   {
-    name: 'Video Streaming Service',
+    name: 'Movie Stream Service',
     category: 'Backend',
-    icon: '🎬',
-    gradient: 'linear-gradient(135deg,#334155,#0f172a)',
-    desc: 'NestJS service that streams video using HTTP range requests, so clients can seek and buffer large files efficiently.',
+    desc: 'NestJS service that streams video using HTTP range requests, so players can seek and buffer large files efficiently.',
     tech: ['NestJS', 'TypeScript', 'Streams'],
     repos: [{ label: 'Source', url: 'https://github.com/SocheatKhoeun/video-stream' }],
   },
   {
     name: 'Khmer Word Segmentation',
-    category: 'Backend',
-    icon: '🔤',
-    gradient: 'linear-gradient(135deg,#14b8a6,#2563eb)',
-    desc: 'A FastAPI service that segments Khmer text — written without spaces between words — into individual words using khmer-nltk.',
+    category: 'AI',
+    desc: 'FastAPI service that segments Khmer text, which is written without spaces between words, into individual words using khmer-nltk.',
     tech: ['Python', 'FastAPI', 'NLP'],
     repos: [{ label: 'Source', url: 'https://github.com/SocheatKhoeun/segment-khmer' }],
-  },
-  {
-    name: 'Flutter + Firebase Student App',
-    category: 'Mobile',
-    icon: '📱',
-    gradient: 'linear-gradient(135deg,#06b6d4,#3b82f6)',
-    desc: 'Cross-platform student management app built with Flutter and backed by Firebase for data and authentication.',
-    tech: ['Flutter', 'Dart', 'Firebase'],
-    repos: [{ label: 'Source', url: 'https://github.com/SocheatKhoeun/FLUTTER-FIREBASE-STUDENT' }],
-  },
-  {
-    name: 'Ride-Sharing App (Flutter)',
-    category: 'Mobile',
-    icon: '🚗',
-    gradient: 'linear-gradient(135deg,#0284c7,#14b8a6)',
-    desc: 'Carpooling app UI and flows built in Flutter across several iterations, exploring the observer pattern and state management.',
-    tech: ['Flutter', 'Dart', 'State Mgmt'],
-    repos: [
-      { label: 'Source', url: 'https://github.com/SocheatKhoeun/blablacar' },
-      { label: 'State mgmt', url: 'https://github.com/SocheatKhoeun/W5---Observer-Pattern-State-Management' },
-    ],
-  },
-  {
-    name: 'Real-Time WebSocket Chat',
-    category: 'Full-Stack',
-    icon: '💬',
-    gradient: 'linear-gradient(135deg,#8b5cf6,#ec4899)',
-    desc: 'Chat application with separate frontend and backend, delivering instant two-way messaging over WebSockets.',
-    tech: ['Node.js', 'WebSocket', 'JavaScript'],
-    repos: [{ label: 'Source', url: 'https://github.com/SocheatKhoeun/WebSocket-Chat' }],
   },
 ];
 
@@ -110,6 +66,7 @@ const LANG_COLORS = {
 // ---------- Helpers ----------
 const $ = (s, r = document) => r.querySelector(s);
 const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+const LOCK = '<svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>';
 const ARROW = '<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg>';
 
 // ---------- Render skills ----------
@@ -129,15 +86,14 @@ $('#filters').innerHTML = categories.map((c, i) =>
 $('#projectGrid').innerHTML = PROJECTS.map((p) => `
   <article class="project reveal" data-cat="${esc(p.category)}">
     <div class="project__body">
-      <div class="project__top">
-        <span class="app-icon" style="background:${p.gradient}" aria-hidden="true">${p.icon}</span>
-        <span class="project__tag">${esc(p.category)}</span>
-      </div>
+      <span class="project__tag">${esc(p.category)}</span>
       <h3>${esc(p.name)}</h3>
       <p>${esc(p.desc)}</p>
       <div class="chips">${p.tech.map((t) => `<span class="chip">${esc(t)}</span>`).join('')}</div>
       <div class="project__links">
-        ${p.repos.map((r) => `<a href="${esc(r.url)}" target="_blank" rel="noopener">${esc(r.label)} ${ARROW}</a>`).join('')}
+        ${p.repos.length
+          ? p.repos.map((r) => `<a href="${esc(r.url)}" target="_blank" rel="noopener">${esc(r.label)} ${ARROW}</a>`).join('')
+          : `<span class="project__private">${LOCK} Private project</span>`}
       </div>
     </div>
   </article>`).join('');
