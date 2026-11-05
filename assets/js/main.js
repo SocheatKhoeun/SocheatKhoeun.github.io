@@ -4,8 +4,8 @@ const GITHUB_USER = 'SocheatKhoeun';
 const SKILLS = [
   { title: 'Backend', desc: 'Scalable APIs, real-time systems and microservices.',
     items: ['Node.js', 'NestJS', 'Express', 'Python', 'FastAPI', 'Laravel', 'PHP', 'REST APIs', 'WebSocket', 'Microservices', 'JWT Auth'] },
-  { title: 'Frontend', desc: 'Fast, responsive interfaces for web and mobile.',
-    items: ['Vue 3', 'Nuxt', 'React', 'Angular', 'TypeScript', 'JavaScript', 'Tailwind CSS', 'Flutter', 'Dart'] },
+  { title: 'Frontend', desc: 'Fast, responsive web apps and back offices.',
+    items: ['Vue 3', 'Nuxt', 'React', 'Angular', 'TypeScript', 'JavaScript', 'Tailwind CSS'] },
   { title: 'Database Management', desc: 'Data modeling, migrations and performance.',
     items: ['PostgreSQL', 'MySQL', 'MongoDB', 'Firebase', 'Schema Design', 'Migrations', 'Query Optimization'] },
   { title: 'DevOps', desc: 'Containerized builds, automation and deployment.',
@@ -39,8 +39,8 @@ const PROJECTS = [
   {
     name: 'Chat Service',
     category: 'Backend',
-    desc: 'Real-time chat with separate frontend and backend, delivering instant two-way messaging over WebSockets.',
-    tech: ['Node.js', 'WebSocket', 'JavaScript'],
+    desc: 'Real-time chat built as an independent microservice. It owns its own API and messaging logic and delivers instant two-way messages over WebSockets.',
+    tech: ['Microservices', 'Node.js', 'WebSocket'],
     repos: [{ label: 'Source', url: 'https://github.com/SocheatKhoeun/WebSocket-Chat' }],
   },
   {
@@ -110,7 +110,7 @@ $('#filters').addEventListener('click', (e) => {
     const res = await fetch(`https://api.github.com/users/${GITHUB_USER}/repos?per_page=100&sort=pushed`);
     if (!res.ok) throw new Error(res.status);
     const repos = (await res.json())
-      .filter((r) => !r.fork && !featured.has(r.name.toLowerCase()) && r.name.toLowerCase() !== `${GITHUB_USER}.github.io`.toLowerCase())
+      .filter((r) => !r.fork && r.language !== 'Dart' && !/flutter|blablacar/i.test(r.name) && !featured.has(r.name.toLowerCase()) && r.name.toLowerCase() !== `${GITHUB_USER}.github.io`.toLowerCase())
       .slice(0, 6);
     if (!repos.length) { list.innerHTML = ''; return; }
     list.innerHTML = repos.map((r) => `
