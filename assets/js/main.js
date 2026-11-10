@@ -151,14 +151,78 @@ $('#skillsGrid').innerHTML = SKILLS.map((s) => `
     <ul class="skill-row__items">${s.items.map((t) => `<li>${skillIcon(t)}<span>${esc(t)}</span></li>`).join('')}</ul>
   </div>`).join('');
 
-// ---------- Render projects ----------
-$('#projectGrid').innerHTML = PROJECTS.map((p) => `
-  <article class="project reveal" data-cat="${esc(p.category)}">
-    <span class="project__cat">${esc(p.category)}</span>
-    <h3>${esc(p.name)}</h3>
-    <p>${esc(p.desc)}</p>
-    <p class="project__tech">${p.tech.map(esc).join('<span aria-hidden="true">·</span>')}</p>
-  </article>`).join('');
+// ---------- Render projects: centre line, one card per row, alternating left/right ----------
+// As you scroll, the line draws down; when it reaches a project, its branch grows and the card slides in.
+const projectTree = $('#projectTree');
+$('#projectGroups').innerHTML = PROJECTS.map((p, i) => `
+  <div class="tree__row tree__row--${i % 2 ? 'right' : 'left'}">
+    <article class="project" data-cat="${esc(p.category)}">
+      <span class="project__cat">${esc(p.category)}</span>
+      <h3>${esc(p.name)}</h3>
+      <p>${esc(p.desc)}</p>
+      <p class="project__tech">${p.tech.map(esc).join('<span aria-hidden="true">·</span>')}</p>
+    </article>
+  </div>`).join('');
+
+const treeCards = [...projectTree.querySelectorAll('.tree__row .project')];
+const treeSvg = projectTree.querySelector('.tree__lines');
+let treeYs = [], treeY0 = 0, treeEnd = 0, treeTip = REDUCED ? Infinity : 0;
+
+function drawTree() {
+  const box = projectTree.getBoundingClientRect();
+  const root = projectTree.querySelector('.tree__root').getBoundingClientRect();
+  const cards = treeCards.map((c) => c.getBoundingClientRect());
+  if (!cards.length) return;
+  // Trunk in the centre on wide screens, or at the root's left side when cards stack.
+  const centered = cards.length > 1 && Math.abs(cards[0].left - cards[1].left) > 2;
+  const x = (centered ? root.left + root.width / 2 : root.left + 22) - box.left;
+  treeY0 = root.bottom - box.top;
+  treeYs = cards.map((c) => c.top - box.top + 44);
+  treeEnd = treeYs[treeYs.length - 1];
+  treeSvg.setAttribute('viewBox', `0 0 ${box.width} ${box.height}`);
+  treeSvg.innerHTML =
+    `<path class="tree__trunk" pathLength="1" d="M${x} ${treeY0} V${treeEnd}" />` +
+    cards.map((c, i) => {
+      const toLeft = c.right - box.left <= x;
+      const edge = (toLeft ? c.right : c.left) - box.left;
+      return `<path class="tree__branch" pathLength="1" d="M${x} ${treeYs[i]} H${edge}" />`
+        + `<circle class="tree__dot" cx="${x}" cy="${treeYs[i]}" r="4" />`;
+    }).join('');
+  updateTree();
+}
+
+function updateTree() {
+  if (!treeYs.length) return;
+  const top = projectTree.getBoundingClientRect().top;
+  // The line's tip follows a point 70% down the viewport, and never retracts.
+  treeTip = Math.max(treeTip, innerHeight * 0.7 - top);
+  const progress = Math.min(1, Math.max(0, (treeTip - treeY0) / (treeEnd - treeY0 || 1)));
+  const trunk = treeSvg.querySelector('.tree__trunk');
+  if (trunk) trunk.style.strokeDashoffset = 1 - progress;
+  const branches = treeSvg.querySelectorAll('.tree__branch');
+  const dots = treeSvg.querySelectorAll('.tree__dot');
+  treeYs.forEach((y, i) => {
+    const on = treeTip >= y;
+    branches[i]?.classList.toggle('is-on', on);
+    dots[i]?.classList.toggle('is-on', on);
+    const card = treeCards[i];
+    if (on && !card.classList.contains('is-shown')) {
+      card.classList.add('is-shown');
+      setTimeout(() => card.classList.add('is-settled'), 1200); // after the slide-in, hover reacts with no delay
+    }
+  });
+}
+
+let treeTick = false;
+addEventListener('scroll', () => {
+  if (treeTick) return;
+  treeTick = true;
+  requestAnimationFrame(() => { treeTick = false; updateTree(); });
+}, { passive: true });
+
+drawTree();
+new ResizeObserver(drawTree).observe(projectTree);
+document.fonts?.ready.then(drawTree);
 
 // ---------- Render services ----------
 $('#servicesGrid').innerHTML = SERVICES.map((sv, i) => `

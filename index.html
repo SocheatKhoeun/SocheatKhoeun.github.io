@@ -16,7 +16,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="assets/css/style.css?v=202611101200" />
+  <link rel="stylesheet" href="assets/css/style.css?v=202611101800" />
   <script>
     try { const t = localStorage.getItem('theme'); if (t) document.documentElement.dataset.theme = t; } catch (e) {}
     document.documentElement.classList.add('js');
@@ -213,7 +213,14 @@
           </div>
           <p class="sub reveal">Products I built end to end, from streaming platforms to AI services.</p>
         </div>
-        <div class="project-grid" id="projectGrid"></div>
+        <div class="tree" id="projectTree">
+          <svg class="tree__lines" aria-hidden="true"></svg>
+          <div class="tree__root reveal">
+            <img src="assets/img/avatar.jpg" alt="" width="44" height="44" />
+            <div><strong>Socheat Khoeun</strong><span>Full-Stack Developer</span></div>
+          </div>
+          <div class="tree__groups" id="projectGroups"></div>
+        </div>
       </div>
     </section>
 
@@ -307,6 +314,6 @@
     </div>
   </footer>
 
-  <script src="assets/js/main.js?v=202611101200" defer></script>
+  <script src="assets/js/main.js?v=202611101800" defer></script>
 </body>
 </html>

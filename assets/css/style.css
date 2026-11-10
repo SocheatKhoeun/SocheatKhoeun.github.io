@@ -252,7 +252,6 @@ strong { font-weight: 600; color: var(--label); }
 }
 
 /* ---------- Projects: 2-col grid ---------- */
-.project-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
 .project {
   display: flex; flex-direction: column; background: var(--surface); border-radius: var(--r); padding: 32px;
   transition: transform .5s var(--ease), background-color .3s;
@@ -266,6 +265,52 @@ strong { font-weight: 600; color: var(--label); }
   color: var(--label); font-size: .92rem; font-weight: 500;
 }
 .project__tech span { color: var(--label-3); margin: 0 6px; }
+
+/* ---------- Projects: centre line, one card per row, alternating sides ---------- */
+.tree { position: relative; }
+.tree__lines { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; overflow: visible; }
+.tree__lines path { fill: none; stroke: var(--label-3); stroke-width: 1.5; stroke-linecap: round; }
+.tree__lines circle { fill: var(--bg); stroke: var(--label-3); stroke-width: 1.5; }
+
+/* Tree animation (only when JS runs; reduced motion shows everything at once) */
+.js .tree__trunk { stroke-dasharray: 1; stroke-dashoffset: 1; transition: stroke-dashoffset .15s linear; }
+.js .tree__branch { stroke-dasharray: 1; stroke-dashoffset: 1; transition: stroke-dashoffset .45s var(--ease) .05s; }
+.js .tree__branch.is-on { stroke-dashoffset: 0; }
+.js .tree__dot { transform: scale(0); transform-box: fill-box; transform-origin: center; transition: transform .4s cubic-bezier(.34, 1.56, .64, 1); }
+.js .tree__dot.is-on { transform: scale(1); }
+.js .tree__row .project {
+  opacity: 0; transform: translateX(-48px);
+  transition: opacity .7s var(--ease) .2s, transform .9s var(--ease) .2s, background-color .3s;
+}
+.js .tree__row--right .project { transform: translateX(48px); }
+.js .tree__row .project.is-shown { opacity: 1; transform: none; }
+.js .tree__row .project.is-settled { transition-delay: 0s; }
+.js .tree__row .project.is-shown:hover { transform: translateY(-3px); }
+@media (prefers-reduced-motion: reduce) {
+  .js .tree__trunk, .js .tree__branch { stroke-dashoffset: 0 !important; transition: none !important; }
+  .js .tree__dot { transform: none !important; transition: none !important; }
+  .js .tree__row .project { opacity: 1 !important; transform: none !important; transition: background-color .3s !important; }
+}
+.tree__root {
+  position: relative; z-index: 1; display: flex; align-items: center; gap: 12px; width: fit-content;
+  margin: 0 auto 40px; padding: 10px 22px 10px 10px; border-radius: 999px;
+  background: var(--primary); color: var(--on-primary);
+}
+.tree__root img { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; }
+.tree__root strong { display: block; color: inherit; font-size: 1rem; letter-spacing: -0.02em; }
+.tree__root div > span { display: block; font-size: .82rem; opacity: .7; }
+.tree__groups { display: flex; flex-direction: column; gap: 24px; }
+.tree__row { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); column-gap: 72px; }
+.tree__row .project { position: relative; z-index: 1; }
+.tree__row--left .project { grid-column: 1; }
+.tree__row--right .project { grid-column: 2; }
+
+@media (max-width: 900px) {
+  .tree__root { margin: 0 0 28px; }
+  .js .tree__row .project, .js .tree__row--right .project { transform: translateX(32px); }
+  .tree__groups { padding-left: 44px; gap: 16px; }
+  .tree__row { display: block; }
+}
 
 /* ---------- Services ---------- */
 .section--tint { background: var(--surface); }
@@ -364,7 +409,6 @@ strong { font-weight: 600; color: var(--label); }
   .chat { padding: 18px 16px 32px; border-radius: 26px; }
   .bubble { max-width: 90%; }
   .project { padding: 24px; }
-  .project-grid { grid-template-columns: 1fr; }
   .services { grid-template-columns: 1fr; }
   .process { grid-template-columns: 1fr; gap: 28px; }
   .service { padding: 26px 22px; }
