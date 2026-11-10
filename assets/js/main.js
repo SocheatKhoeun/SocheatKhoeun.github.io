@@ -14,6 +14,27 @@ const SKILLS = [
     items: ['Python', 'Computer Vision', 'Face Recognition', 'NLP', 'Khmer NLP', 'Model Serving'] },
 ];
 
+// Skill icons: brand logos from Simple Icons, generic ones from Lucide.
+// Value: [source, slug, brand color]. No color = follows the text color (light/dark).
+const SI = 'https://cdn.jsdelivr.net/npm/simple-icons@15.22.0/icons/';
+const LU = 'https://cdn.jsdelivr.net/npm/lucide-static@1.50.0/icons/';
+const SKILL_ICONS = {
+  'Node.js': [SI, 'nodedotjs', '#5FA04E'], 'NestJS': [SI, 'nestjs', '#E0234E'], 'Express': [SI, 'express'],
+  'Python': [SI, 'python', '#3776AB'], 'FastAPI': [SI, 'fastapi', '#009688'], 'Laravel': [SI, 'laravel', '#FF2D20'],
+  'PHP': [SI, 'php', '#777BB4'], 'REST APIs': [LU, 'server'], 'WebSocket': [LU, 'radio'],
+  'Microservices': [LU, 'boxes'], 'JWT Auth': [LU, 'key-round'],
+  'Vue 3': [SI, 'vuedotjs', '#4FC08D'], 'Nuxt': [SI, 'nuxt', '#00DC82'], 'React': [SI, 'react', '#61DAFB'],
+  'Angular': [SI, 'angular', '#DD0031'], 'TypeScript': [SI, 'typescript', '#3178C6'],
+  'JavaScript': [SI, 'javascript', '#F7DF1E'], 'Tailwind CSS': [SI, 'tailwindcss', '#06B6D4'],
+  'PostgreSQL': [SI, 'postgresql', '#4169E1'], 'MySQL': [SI, 'mysql', '#4479A1'], 'MongoDB': [SI, 'mongodb', '#47A248'],
+  'Prisma': [SI, 'prisma'], 'Drizzle ORM': [SI, 'drizzle'], 'Firebase': [SI, 'firebase', '#DD2C00'],
+  'Schema Design': [LU, 'layers-3'], 'Migrations': [LU, 'git-compare'], 'Query Optimization': [LU, 'gauge'],
+  'Docker': [SI, 'docker', '#2496ED'], 'Docker Compose': [SI, 'docker', '#2496ED'], 'CI/CD': [LU, 'infinity'],
+  'GitHub Actions': [SI, 'githubactions', '#2088FF'], 'Linux': [SI, 'linux', '#FCC624'], 'Git': [SI, 'git', '#F05032'],
+  'Computer Vision': [SI, 'opencv', '#5C3EE8'], 'Face Recognition': [LU, 'scan-face'], 'NLP': [LU, 'languages'],
+  'Khmer NLP': [LU, 'languages'], 'Model Serving': [LU, 'brain-circuit'],
+};
+
 const PROJECTS = [
   {
     name: 'SabayFlix',
@@ -114,13 +135,20 @@ const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 const REDUCED = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 // ---------- Render skills ----------
+function skillIcon(name) {
+  const icon = SKILL_ICONS[name];
+  if (!icon) return '';
+  const [base, slug, color] = icon;
+  const style = `--icon:url('${base}${slug}.svg')${color ? `;--c:${color}` : ''}`;
+  return `<span class="skill-icon" style="${style}" aria-hidden="true"></span>`;
+}
 $('#skillsGrid').innerHTML = SKILLS.map((s) => `
   <div class="skill-row">
     <div class="skill-row__head">
       <h3>${esc(s.title)}</h3>
       <p>${esc(s.desc)}</p>
     </div>
-    <ul class="skill-row__items">${s.items.map((t) => `<li>${esc(t)}</li>`).join('')}</ul>
+    <ul class="skill-row__items">${s.items.map((t) => `<li>${skillIcon(t)}<span>${esc(t)}</span></li>`).join('')}</ul>
   </div>`).join('');
 
 // ---------- Render projects ----------

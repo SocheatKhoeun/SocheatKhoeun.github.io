@@ -245,6 +245,11 @@ strong { font-weight: 600; color: var(--label); }
   display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 12px 24px;
   font-size: 1rem; font-weight: 500; color: var(--label);
 }
+.skill-row__items li { display: flex; align-items: center; gap: 10px; min-width: 0; }
+.skill-icon {
+  flex: none; width: 20px; height: 20px; background: var(--c, var(--label));
+  -webkit-mask: var(--icon, none) center / contain no-repeat; mask: var(--icon, none) center / contain no-repeat;
+}
 
 /* ---------- Projects: 2-col grid ---------- */
 .project-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
